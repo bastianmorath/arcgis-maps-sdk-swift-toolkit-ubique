@@ -17,6 +17,9 @@ import ArcGIS
 
 /// A view which allows selection of levels represented in `FloorFacility`.
 struct LevelSelector: View {
+    @Environment(\.colorScheme) var colorScheme
+
+
     /// The view model used by the `LevelsView`.
     @EnvironmentObject var viewModel: FloorFilterViewModel
     
@@ -107,7 +110,7 @@ extension LevelSelector {
             Text(level.shortName)
                 .foregroundStyle(textColor(for: level))
                 .frame(maxWidth: .infinity)
-                .padding([.vertical], 4)
+                .padding([.vertical], 6)
                 .background {
                     roundedRectangle
                         .fill(buttonColor(for: level))
@@ -122,7 +125,7 @@ extension LevelSelector {
     /// - Returns: The scrollable list of level buttons.
     @ViewBuilder func makeLevelButtons() -> some View {
         let scrollView = ScrollViewReader { proxy in
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 let list = VStack(spacing: 4) {
                     ForEach(filteredLevels, id: \.id) { level in
                         makeLevelButton(level)
@@ -182,7 +185,11 @@ extension LevelSelector {
             return .black
         }
 #endif
-        return .primary
+        if viewModel.selection?.level == level {
+            return colorScheme == .dark  ? Color.black : .white
+        } else {
+            return Color.primary
+        }
     }
     
     /// Scrolls the list within the provided proxy to the button representing the selected level.
