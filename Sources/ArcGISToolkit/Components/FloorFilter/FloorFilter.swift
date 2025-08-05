@@ -81,7 +81,7 @@ public struct FloorFilter: View {
         viewpoint: Binding<Viewpoint?> = .constant(nil),
         isNavigating: Binding<Bool>,
         selection: Binding<FloorFilterSelection?>? = nil,
-        userSelectedNewLevel: @escaping ()->Void,
+        userSelectedNewLevel: @escaping ()->Void
     ) {
         _viewModel = StateObject(
             wrappedValue: FloorFilterViewModel(
