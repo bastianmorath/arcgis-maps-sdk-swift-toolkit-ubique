@@ -189,8 +189,10 @@ extension LevelSelector {
     /// - Parameter proxy: The proxy containing the scroll view.
     func scrollToSelectedLevel(with proxy: ScrollViewProxy) {
         if let level = viewModel.selection?.level {
-            withAnimation {
-                proxy.scrollTo(level.id)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                withAnimation {
+                    proxy.scrollTo(level.id)
+                }
             }
         }
     }
