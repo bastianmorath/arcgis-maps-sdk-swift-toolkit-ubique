@@ -33,7 +33,10 @@ struct LevelSelector: View {
     
     /// The levels to display.
     let levels: [FloorLevel]
-    
+
+    var userSelectedNewLevel: ()->Void
+
+
     public var body: some View {
         VStack {
             if !isTopAligned {
@@ -94,6 +97,7 @@ extension LevelSelector {
     /// - Returns: The button representing the provided level.
     @ViewBuilder func makeLevelButton(_ level: FloorLevel) -> some View {
         Button {
+            userSelectedNewLevel()
             viewModel.setLevel(level)
             if isCollapsed && levels.count > 1 {
                 isCollapsed = false

@@ -80,7 +80,8 @@ public struct FloorFilter: View {
         automaticSelectionMode: FloorFilterAutomaticSelectionMode = .always,
         viewpoint: Binding<Viewpoint?> = .constant(nil),
         isNavigating: Binding<Bool>,
-        selection: Binding<FloorFilterSelection?>? = nil
+        selection: Binding<FloorFilterSelection?>? = nil,
+        userSelectedNewLevel: @escaping ()->Void,
     ) {
         _viewModel = StateObject(
             wrappedValue: FloorFilterViewModel(
@@ -93,6 +94,7 @@ public struct FloorFilter: View {
         self.isNavigating = isNavigating
         self.viewpoint = viewpoint
         self.selection = selection
+        self.userSelectedNewLevel = userSelectedNewLevel
     }
     
     /// The view model used by the `FloorFilter`.
@@ -108,7 +110,10 @@ public struct FloorFilter: View {
     
     /// The selected site, floor, or level.
     private var selection: Binding<FloorFilterSelection?>?
-    
+
+    private var userSelectedNewLevel: ()->Void
+
+
     /// The alignment configuration.
     private let alignment: Alignment
     
@@ -184,7 +189,8 @@ public struct FloorFilter: View {
     @ViewBuilder private var levelSelector: some View {
         LevelSelector(
             isTopAligned: isTopAligned,
-            levels: viewModel.sortedLevels
+            levels: viewModel.sortedLevels,
+            userSelectedNewLevel: userSelectedNewLevel
         )
     }
     
