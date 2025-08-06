@@ -1,3 +1,14 @@
+# 🚨 Fork Notice: ArcGIS Maps SDK for Swift Toolkit (Ubique Fork)
+
+This repository is a Ubique **fork** of the original [Esri ArcGIS Maps SDK for Swift Toolkit](https://github.com/Esri/arcgis-maps-sdk-swift-toolkit), used in the eth-ios app.
+
+## Key Changes in This Fork
+
+1. **FloorFilter Adjustments**: Changes to the FloorFilter component, including design and functionality improvements needed for the eth-ios app.
+2. **Removal of Unnecessary Files**: We have removed files and features not required for our use case, in particular all camera-related functionality. This avoids the need to add `NSCameraUsageDescription` to our project, as we do not use any camera features.
+
+---
+
 # ArcGIS Maps SDK for Swift Toolkit
 
 [![doc](https://img.shields.io/badge/Doc-purple)](https://developers.arcgis.com/swift/toolkit-api-reference/documentation/arcgistoolkit/)  [![SPM](https://img.shields.io/badge/SPM-compatible-4BC51D.svg?style=flat)](https://github.com/apple/swift-package-manager/)
